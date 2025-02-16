@@ -42,7 +42,7 @@
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Save</button>
-                <a href="books" class="btn btn-secondary">Cancel</a>
+                <a href="/mywebapp/" class="btn btn-secondary">Cancel</a>
             </div>
         </form:form>
     </div>
