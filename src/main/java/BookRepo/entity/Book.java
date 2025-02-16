@@ -1,7 +1,7 @@
 package BookRepo.entity;
-import java.util.Objects;  // Added import
-import java.util.UUID;     // For ID generation (if needed)
+
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Book implements Serializable, Comparable<Book> {
 
@@ -10,12 +10,13 @@ public class Book implements Serializable, Comparable<Book> {
     private String author;
     private String genre;
     private int publicationYear;
+    
+    // במידת הצורך - ניתן להשתמש בשדה זה או להסירו
     private String content;
 
     public Book() {
     }
 
-    // Updated constructor with ID (optional)
     public Book(String id, String title, String author, String genre, int publicationYear) {
         this.id = id;
         this.title = title;
@@ -24,7 +25,6 @@ public class Book implements Serializable, Comparable<Book> {
         this.publicationYear = publicationYear;
     }
 
-
     // Getters & Setters
     public String getId() {
         return id;
@@ -32,30 +32,42 @@ public class Book implements Serializable, Comparable<Book> {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getAuthor() {
         return author;
     }
     public void setAuthor(String author) {
         this.author = author;
     }
+
     public String getGenre() {
         return genre;
     }
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
     public int getPublicationYear() {
         return publicationYear;
     }
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
+
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public int compareTo(Book other) {
         if (this.id == null && other.id == null) return 0;

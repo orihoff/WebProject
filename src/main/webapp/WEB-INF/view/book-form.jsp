@@ -4,7 +4,7 @@
 <head>
     <title>
         <c:choose>
-            <c:when test="${book.id > 0}">Edit Book</c:when>
+            <c:when test="${not empty book.id}">Edit Book</c:when>
             <c:otherwise>Add New Book</c:otherwise>
         </c:choose>
     </title>
@@ -14,16 +14,14 @@
     <div class="container">
         <h1 class="text-center my-4">
             <c:choose>
-                <c:when test="${book.id > 0}">Edit Book</c:when>
+                <c:when test="${not empty book.id}">Edit Book</c:when>
                 <c:otherwise>Add New Book</c:otherwise>
             </c:choose>
         </h1>
         <form:form modelAttribute="book" method="post" class="form-horizontal"
-            action="${book.id > 0 ? '/mywebapp/update' : '/mywebapp/save'}">
-            <div class="mb-3">
-                <form:label path="id" class="form-label">ID</form:label>
-                <form:input path="id" class="form-control" disabled="true"/>
-            </div>
+                   action="${not empty book.id ? '/mywebapp/update' : '/mywebapp/save'}">
+            <form:hidden path="id" />
+            
             <div class="mb-3">
                 <form:label path="title" class="form-label">Title</form:label>
                 <form:input path="title" class="form-control" required="true"/>

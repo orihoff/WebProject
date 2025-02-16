@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;   
+
 @Service
 @PropertySource("classpath:params.properties")
 public class BookService {
@@ -39,27 +39,36 @@ public class BookService {
     }
 
     public void addBook(Book book) throws Exception {
-    	if (book.getId() == null || book.getId().isEmpty()) {
-            // Generate a unique ID (e.g., UUID)
-            book.setId(UUID.randomUUID().toString());
-        }
-        if(bookDao.getAll().size() >= maxNumofBooks) {
+        // אם אין ID, ה-DAO כבר ידאג לייצר ID רץ
+        // בודקים קודם אם כמות הספרים לא חורגת מהמקסימום
+        if (bookDao.getAll().size() >= maxNumofBooks) {
             throw new StorageLimitExceededException();
         }
-        validateBookFields(book.getTitle(), book.getAuthor(), book.getGenre(), book.getPublicationYear());
+        // בדיקות תקינות על שדות הספר
+        validateBookFields(book.getTitle(), 
+                           book.getAuthor(), 
+                           book.getGenre(), 
+                           book.getPublicationYear());
+
+        // שמירה ב-DAO
         bookDao.save(book);
     }
 
     public void updateBook(String id, String title, String author, String genre, int year) throws Exception {
         Book existingBook = bookDao.get(id);
-        if(existingBook == null) {
+        if (existingBook == null) {
             throw new BookNotFoundException(id);
         }
+        // בדיקות תקינות על השדות החדשים
         validateBookFields(title, author, genre, year);
+
+        // עדכון פרטי הספר הקיים
         existingBook.setTitle(title);
         existingBook.setAuthor(author);
         existingBook.setGenre(genre);
         existingBook.setPublicationYear(year);
+
+        // קריאה לפונקציית update
         bookDao.update(existingBook);
     }
 
@@ -71,16 +80,17 @@ public class BookService {
         return bookDao.get(id);
     }
 
-    public void validateBookFields(String title, String author, String genre, int year) throws Exception {
-        if(title == null || title.isEmpty() || author == null || author.isEmpty() || genre == null || genre.isEmpty()) {
+    private void validateBookFields(String title, String author, String genre, int year) throws Exception {
+        if (title == null || title.isEmpty() ||
+            author == null || author.isEmpty() ||
+            genre == null  || genre.isEmpty()) {
             throw new MissingRequiredBookFieldsException();
         }
-        if(year < MinYear) {
+        if (year < MinYear) {
             throw new InvalidBookYearException(MinYear);
         }
-        if(title.length() > maxCharactersinBookName) {
+        if (title.length() > maxCharactersinBookName) {
             throw new ExceedTitleLengthException(maxCharactersinBookName);
         }
     }
-
 }
