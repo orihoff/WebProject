@@ -27,15 +27,15 @@
                         <td>${book.genre}</td>
                         <td>${book.publicationYear}</td>
                         <td>
-                            <a href="books/${book.id}" class="btn btn-info">Show</a>
-                            <a href="books/edit/${book.id}" class="btn btn-warning">Edit</a>
-                            <a href="books/delete/${book.id}" class="btn btn-danger">Delete</a>
+                            <a href="${book.id}" class="btn btn-info">Show</a>
+                            <a href="edit/${book.id}" class="btn btn-warning">Edit</a>
+                            <a href="delete/${book.id}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <a href="/mywebapp/new" class="btn btn-success">Add New Book</a>
+        <a href="new" class="btn btn-success">Add New Book</a>
     </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.UUID;   
 @Service
 @PropertySource("classpath:params.properties")
 public class BookService {
@@ -39,6 +39,10 @@ public class BookService {
     }
 
     public void addBook(Book book) throws Exception {
+    	if (book.getId() == null || book.getId().isEmpty()) {
+            // Generate a unique ID (e.g., UUID)
+            book.setId(UUID.randomUUID().toString());
+        }
         if(bookDao.getAll().size() >= maxNumofBooks) {
             throw new StorageLimitExceededException();
         }
@@ -78,4 +82,5 @@ public class BookService {
             throw new ExceedTitleLengthException(maxCharactersinBookName);
         }
     }
+
 }

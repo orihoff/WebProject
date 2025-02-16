@@ -16,7 +16,7 @@
                 <strong>Genre:</strong> ${book.genre}<br/>
                 <strong>Publication Year:</strong> ${book.publicationYear}
             </p>
-            <a href="$/mywebapp/books" class="btn btn-primary">OK</a>
+            <a href="/mywebapp/" class="btn btn-primary">OK</a>
         </div>
     </div>
 </div>

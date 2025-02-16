@@ -12,7 +12,7 @@
     </div>
     <div class="mt-3">
         <a href="javascript:history.back()" class="btn btn-warning">Back</a>
-        <a href="/mywebapp/books" class="btn btn-secondary">Cancel</a>
+        <a href="/mywebapp/" class="btn btn-secondary">Cancel</a>
     </div>
 </div>
 </body>

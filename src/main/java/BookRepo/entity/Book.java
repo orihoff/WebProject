@@ -1,5 +1,6 @@
 package BookRepo.entity;
-
+import java.util.Objects;  // Added import
+import java.util.UUID;     // For ID generation (if needed)
 import java.io.Serializable;
 
 public class Book implements Serializable, Comparable<Book> {
@@ -9,18 +10,20 @@ public class Book implements Serializable, Comparable<Book> {
     private String author;
     private String genre;
     private int publicationYear;
-    private String content; // שדה אופציונלי
+    private String content;
 
-    // בונה ברירת מחדל (נדרש ל-Spring Form binding)
     public Book() {
     }
 
-    public Book(String title, String author, String genre, int publicationYear) {
+    // Updated constructor with ID (optional)
+    public Book(String id, String title, String author, String genre, int publicationYear) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publicationYear = publicationYear;
     }
+
 
     // Getters & Setters
     public String getId() {
@@ -53,18 +56,25 @@ public class Book implements Serializable, Comparable<Book> {
     public void setPublicationYear(int publicationYear) {
         this.publicationYear = publicationYear;
     }
-
     @Override
     public int compareTo(Book other) {
+        if (this.id == null && other.id == null) return 0;
+        if (this.id == null) return -1;
+        if (other.id == null) return 1;
         return this.id.compareTo(other.id);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) return true;
-        if(obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Book book = (Book) obj;
-        return id.equals(book.id);
+        return Objects.equals(id, book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override
