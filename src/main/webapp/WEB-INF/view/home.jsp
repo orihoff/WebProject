@@ -95,9 +95,6 @@
         </div>
     </nav>
 
-    <div class="hero-header">
-        <h1 class="display-3 text-center">Your Next Favorite Read</h1>
-    </div>
 
     <div class="container">
         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4">
