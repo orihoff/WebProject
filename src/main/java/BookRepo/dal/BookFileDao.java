@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class BookFileDao implements BookDao {
 
-    // נוכל להחליף ע"י פרופרטי חיצוני. ברירת מחדל: "./books.dat"
+    
     @Value("${bookFilePath:./books.dat}")
     private String filePath;
 
@@ -52,7 +52,7 @@ public class BookFileDao implements BookDao {
 
     @Override
     public synchronized List<Book> getAll() throws Exception {
-        // נחזיר עותק ממויין של הרשימה
+        // ן¿½ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ן¿½ן¿½
         List<Book> sortedBooks = new ArrayList<>(books);
         Collections.sort(sortedBooks);
         return sortedBooks;
@@ -60,12 +60,12 @@ public class BookFileDao implements BookDao {
 
     @Override
     public synchronized void save(Book book) throws Exception {
-        // אם הספר מגיע בלי ID - נייצר ID רץ
+        // ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ ID - ן¿½ן¿½ן¿½ן¿½ן¿½ ID ן¿½ן¿½
         if (book.getId() == null || book.getId().isEmpty()) {
             currentID++;
             book.setId(String.valueOf(currentID));
         }
-        // בדיקה אם כבר קיים ספר עם אותו ID
+        // ן¿½ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ ן¿½ן¿½ן¿½ ן¿½ן¿½ ן¿½ן¿½ן¿½ן¿½ ID
         if (books.contains(book)) {
             throw new BookAlreadyExistsException(book.getId());
         }
