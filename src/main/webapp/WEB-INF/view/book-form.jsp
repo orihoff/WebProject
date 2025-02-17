@@ -83,7 +83,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <span class="netflix-logo">BOOKFLIX</span>
+			<a href="<%= request.getContextPath() %>/" class="netflix-logo text-decoration-none">BOOKFLIX</a>
         </div>
     </nav>
     <div class="container d-flex justify-content-center">

@@ -86,7 +86,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <span class="netflix-logo">BOOKFLIX</span>
+			<a href="<%= request.getContextPath() %>/" class="netflix-logo text-decoration-none">BOOKFLIX</a>
             <div class="ms-auto">
                 <a href="new" class="btn add-button">
                     <i class="fas fa-plus me-2"></i>Add New Book
