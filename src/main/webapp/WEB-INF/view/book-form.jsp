@@ -106,10 +106,19 @@
                     <form:label path="author" class="form-label">Author</form:label>
                     <form:input path="author" class="form-control" required="true"/>
                 </div>
-                <div class="mb-3">
-                    <form:label path="genre" class="form-label">Genre</form:label>
-                    <form:input path="genre" class="form-control" required="true"/>
-                </div>
+				<div class="mb-3">
+    				<form:label path="genre" class="form-label">Genre</form:label>
+    					<form:select path="genre" class="form-control" required="true">
+        				<form:option value="fiction">Fiction</form:option>
+        				<form:option value="mystery">Mystery</form:option>
+        				<form:option value="fantasy">Fantasy</form:option>
+        				<form:option value="science-fiction">Science Fiction</form:option>
+        				<form:option value="romance">Romance</form:option>
+        				<form:option value="thriller">Thriller</form:option>
+        				<form:option value="biography">Biography</form:option>
+        				<form:option value="horror">Horror</form:option>
+    				</form:select>
+				</div>
                 <div class="mb-3">
                     <form:label path="publicationYear" class="form-label">Publication Year</form:label>
                     <form:input path="publicationYear" class="form-control" type="number" required="true"/>
